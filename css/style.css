@@ -1,0 +1,116 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background-color: #e2e2e2;
+  font-family: "Poppins", sans-serif; }
+
+.appear {
+  left: 0 !important; }
+
+.hidden {
+  display: none; }
+
+/* Header*/
+.header {
+  position: fixed;
+  height: 80px;
+  background-color: #140e19;
+  width: 100%;
+  top: 0;
+  color: white;
+  /* Quitamos estilos por defecto*/
+  /* navbar */ }
+  .header a {
+    text-decoration: none;
+    color: white; }
+  .header ul > li {
+    list-style: none; }
+  .header .navbar {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 1rem; }
+    .header .navbar button {
+      border: none;
+      color: white;
+      background: none;
+      font-size: 25px;
+      cursor: pointer;
+      transition: .3s; }
+      .header .navbar button:hover {
+        color: #d896fa; }
+    .header .navbar__buttons {
+      display: flex;
+      gap: 1rem; }
+      .header .navbar__buttons .btn-cart {
+        position: relative; }
+      .header .navbar__buttons > button {
+        border: none;
+        color: white;
+        background: none;
+        font-size: 25px;
+        cursor: pointer;
+        transition: .3s; }
+        .header .navbar__buttons > button:hover {
+          color: #d896fa; }
+        .header .navbar__buttons > button .notification {
+          position: absolute;
+          top: -50%;
+          right: -50%;
+          background: red;
+          font-size: 10px;
+          padding: 5px;
+          border-radius: 50%; }
+    .header .navbar__brand {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      align-items: center; }
+      .header .navbar__brand h1 {
+        letter-spacing: 2px; }
+    .header .navbar__items {
+      background-color: #1d2a49;
+      position: fixed;
+      left: 100%;
+      top: 80px;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s ease-in-out; }
+    .header .navbar__item {
+      padding: 1rem;
+      border-bottom: 1px solid #484982;
+      transition: 0.3s; }
+      .header .navbar__item:hover {
+        background-color: #484982; }
+    .header .navbar__appear {
+      left: 0; }
+
+/* Cart */
+.cart {
+  font-family: "Roboto", sans-serif;
+  position: fixed;
+  top: 80px;
+  left: 100%;
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  padding: 2rem;
+  transition: all 0.5s ease-in-out;
+  font-family: "League Spartan", sans-serif; }
+  .cart__header {
+    display: flex;
+    justify-content: space-between; }
+    .cart__header > h2 {
+      color: #3a3a3a;
+      font-weight: 900;
+      margin-bottom: 10px;
+      text-transform: uppercase; }
+    .cart__header > i {
+      font-size: 32px;
+      cursor: pointer;
+      transition: .3s; }
+      .cart__header > i:hover {
+        color: gray; }

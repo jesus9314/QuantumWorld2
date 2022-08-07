@@ -1,0 +1,30 @@
+//colores
+$veryDarkPurple : #140e19;
+$darkPurple : #1d2a49;
+$purple : #484982;
+$lightPurple : #856cc4;
+$veryLightPurple : #d896fa;
+
+//fuentes
+$sparta : 'League Spartan', sans-serif;
+$poppins : 'Poppins', sans-serif;
+$roboto : 'Roboto', sans-serif;
+/* Reset */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    background-color: rgb(226, 226, 226);
+    font-family: $poppins;
+}
+//Muestra los modales de menú y cart
+.appear{
+    left: 0 !important;
+}
+//oculta elementos
+.hidden{
+    display: none;
+}
