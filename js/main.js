@@ -32,9 +32,12 @@ closeCart.addEventListener('click',()=>{
     cart.classList.remove("appearCart")
     fullCart.classList.remove("show")
 })
-fullCart.addEventListener('click',()=>{
-    if(fullCart.className === "fullCart show"){
-        cart.classList.remove("appearCart")
-        fullCart.classList.remove("show")
+fullCart.addEventListener('click',(e)=>{
+    let sectionClicked = window.innerWidth - cart.clientWidth
+    if(e.clientX <= sectionClicked){
+        if(fullCart.className === "fullCart show"){
+            fullCart.classList.remove("show")
+            cart.classList.remove("appearCart")
+        }
     }
 })
