@@ -16,9 +16,10 @@
     }
     /* navbar */
     .navbar{
+        height: 100%;
         display: flex;
         flex-direction: column;
-        padding: 5px 1rem;
+        padding: 0 1rem;
         button{
         border: none;
         color: white;
@@ -82,8 +83,38 @@
                 background-color: $purple;
             }
         }
-        &__appear{
-            left: 0;
+    }
+}
+.appearMenu{
+    left: 0 !important;
+}
+@media(min-width:992px){
+    .header .navbar{
+        max-width: 1200px;
+        margin: 0 auto;
+        flex-direction: row;
+        justify-content: space-between;
+        &__brand{
+            width: 60%;
         }
+        &__items{
+            position: static;
+            width: 50%;
+            background: none;
+        }
+        &__list{
+            display: flex;
+            line-height: 80px;
+            height: 100%;
+            margin: 0 2rem;
+        }
+        &__item{
+            border: none;
+            height: 100%;
+            padding: 0 1.5rem;
+        }
+    }
+    .btn-toggle{
+        display: none;
     }
 }
