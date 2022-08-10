@@ -1,4 +1,8 @@
+/*
+Empleamos mobile first para el diseño, siendo los breakponts los siguientes: 
+768px, 992px, 1200px
+*/
 @import 'generalStyles';
-@import 'pages/header';
+@import 'header';
 @import 'cart';
-
+@import 'products'
