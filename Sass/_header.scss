@@ -81,6 +81,7 @@
 		// Aparece el menú en modo mobile y tablet
 		.appearMenu {
 			transform: translateY(0%);
+            z-index: 9999;
 		}
 		&__item {
 			padding: 1rem;
