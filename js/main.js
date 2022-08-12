@@ -46,15 +46,16 @@ if(carrito){
 noti.innerText=totalProducts
 totalPriceID.innerText = `S/${totalPrice}`
 
+//Agregamos productos al array
 productos.push(new Product(0,'Core I5 12400',1200, 'img/ci512400.jpg',5,'intel'))
 productos.push(new Product(1,'RTX 2060 MSI',2800, 'img/rtx2060msi.jpg',3,'MSI'))
 productos.push(new Product(2,'Placa Asus Prime A320',350, 'img/asusPrimea320.jpg',6,'Asus'))
 
-//imprimimos todos productos que hay en el carrito
+//imprimimos todos productos 
 printProducts(productsContainer,productos)
 
+//Agregamos eventos a cada botón de agregar
 const btnAdd = document.querySelectorAll(".product__button")
-
 btnAdd.forEach(b => {
     b.addEventListener('click', () => {
         let p = {}
@@ -80,6 +81,7 @@ btnAdd.forEach(b => {
         totalPriceID.innerText = formatQty(totalPrice)    
     })
 })
+//Limpiamos el valor del carrito
 document.querySelector("#clean").addEventListener('click', e =>{
     e.preventDefault()
     if(confirm("Seguro que desea limpiar su carrito?")){
