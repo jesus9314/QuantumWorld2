@@ -184,11 +184,22 @@ body {
     display: flex;
     margin: 1rem 0;
     font-family: "Poppins", sans-serif;
-    font-size: 13px; }
+    font-size: 13px;
+    align-items: center;
+    justify-content: space-between; }
+    .cart__item .item {
+      display: flex; }
     .cart__item figure {
       height: 100px; }
       .cart__item figure img {
         height: 100%; }
+    .cart__item a {
+      font-size: 20px;
+      margin-right: 1rem;
+      transition: .3s;
+      cursor: pointer; }
+      .cart__item a:hover {
+        color: red; }
     .cart__item .itemContent {
       display: flex;
       flex-direction: column;

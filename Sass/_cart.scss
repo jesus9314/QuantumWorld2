@@ -39,10 +39,24 @@
         margin: 1rem 0;
         font-family: $poppins;
         font-size: 13px;
+        align-items: center;
+        justify-content: space-between;
+        .item{
+            display: flex;
+        }
         figure{
             height: 100px;
             img{
                 height: 100%;
+            }
+        }
+        a{
+            font-size: 20px;
+            margin-right: 1rem;
+            transition: .3s;
+            cursor: pointer;
+            &:hover{
+                color: red;
             }
         }
         .itemContent{

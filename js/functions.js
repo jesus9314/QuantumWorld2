@@ -35,9 +35,9 @@ function fnClose(){
 <------------------------------------------------------------------>
 */
 //agrega un array al localStorage
-function addLocalStorage(name, array) {
+function addLocalStorage(array) {
     const jsonArray = JSON.stringify(array)
-    localStorage.setItem(name, jsonArray)
+    localStorage.setItem('carrito', jsonArray)
 }
 //obtener la data de un item del localStorage
 function getDataFromStorage(name) {
@@ -52,11 +52,20 @@ function cleanData(item) {
 <------------------------------------------------------------------>
 <------------------------------------------------------------------>
 */
+//Actualizar la notificacion
+function updateNotification(){
+    const totalProducts = getTotalElements(carrito)
+    const noti = document.querySelector("#notification")
+    if(totalProducts){
+        noti.innerText = totalProducts 
+    }else{
+        noti.innerText = 0 
+    }
+}
 //function para imprimir todos los productos
 function printProducts(container, array){
     array.forEach( a =>{
-        const el = createCard(a)
-        container.append(el)
+        createCard(a)
     })
 }
 
@@ -69,6 +78,7 @@ function createCard(obj) {
         price,
         id
     } = obj
+    const container = document.querySelector('.products')
     const el = document.createElement('div')
     el.classList.add('product__card')
     el.innerHTML = `
@@ -84,7 +94,7 @@ function createCard(obj) {
         </button>
     </div>
     `
-    return el
+    container.append(el)
 }
 //crea un elemento en el carrito de compras
 function createCartElement(obj) {
@@ -96,45 +106,84 @@ function createCartElement(obj) {
         id,
         qty
     } = obj
+    const bodyCart = document.querySelector('.cart__body')
     const el = document.createElement('div')
     el.classList.add('cart__item')
+    el.setAttribute('data-id',id)
     el.innerHTML = `
-    <figure>
-        <img src=${url} alt="${name}"/>
-    </figure>
-    <div class="itemContent">
-        <h3>${name}</h3>
-        <p>
-            <span class="qty" data-id=${id}>${qty}</span> x <span class="price">${formatQty(price)}</span>
-        </p>
+    <div class="item">
+        <figure>
+            <img src=${url} alt="${name}"/>
+        </figure>
+        <div class="itemContent">
+            <h3>${name}</h3>
+            <p>
+                <span class="qty" data-id=${id}>${qty}</span> x <span class="price">${formatQty(price)}</span>
+            </p>
+        </div>
     </div>
+    <a class="btn-delete" data-id=${id}>
+		<i class="fa-solid fa-trash-can"></i>
+	</a>
     `
-    return el
+    bodyCart.append(el)
+}
+function renderCart(carrito){
+    carrito.forEach( i =>{
+        createCartElement(i)
+    })
+    updateNotification()
 }
 // Retorna si el objeto existe en el array en base a su id
 function isProduct(id, array) {
+    id = Number(id)
     const result = array.some(a => a.id === id)
     return result
 }
 // Retorna un objeto del array en base a su id
 function getProduct(id, array) {
-    const result = array.find(a => a.id === id)
+    const result = {...array.find(a => a.id === id)}
     return result
 }
-//actualizamos el la cantidad del producto
-function updateQty(array, id) {
-    array.forEach(a => {
-        if (a.id === id) {
-            a.qty++
-        }
-        const qty = document.querySelectorAll(".qty")
-        qty.forEach(q => {
-            if (Number(q.getAttribute('data-id')) === id) {
-                q.innerText = a.qty
-            }
-        })
-    })
+function addCart(e){
+    if(e.target.classList.contains('product__button')){
+        const id = Number(e.target.dataset.id)
+        setCarrito(id)
+    }
+    e.stopPropagation()
 }
+function setCarrito(id){
+    let producto = carrito.find( p => p.id === id)
+    if(isProduct(id,carrito)){
+        producto.qty++
+        updateQty(id,producto.qty)
+        updateNotification()
+        addLocalStorage(carrito)
+    }else{
+        producto = getProduct(id,productos)
+        producto.qty = 1
+        carrito.push(producto)
+        createCartElement(producto)
+        updateNotification()
+        addLocalStorage(carrito)
+    }
+}
+//actualizamos el la cantidad del producto
+function updateQty(id,qty) {
+    const items = document.querySelectorAll('.cart__item')
+    let el = ""
+    for(let i=0; i<items.length;i++){
+        if(Number(items[i].dataset.id) === id){
+            el = items[i]
+        }
+    }
+    el.querySelector('.qty').innerText=qty
+}
+
+/*
+<------------------------------------------------------------------>
+<------------------------------------------------------------------>
+*/
 //obtenemos la cantidad de elementos que hay en nuestro carrito
 function getTotalElements(array){
     return result = array.reduce((acumulador, suma)=>acumulador + suma.qty,0)
@@ -143,33 +192,6 @@ function getTotalElements(array){
 function getTotalPrice(array){
     return result = array.reduce((acumulador, suma) =>acumulador +(suma.qty*suma.price),0)
 }
-//Agregamos los eventos a cada botón de cada producto
-function fnAdda(b){
-    let p = {}
-    const id = Number(b.getAttribute("data-id"))
-    const producto = getProduct(id, productos)
-    const exist = isProduct(id,carrito)
-    if (exist) {
-        updateQty(carrito,id)
-        addLocalStorage("carrito",carrito)
-        totalProducts = carrito.reduce((acum,sum) =>{
-            return acum + sum.qty
-        },0)
-        noti.innerText=totalProducts
-    } else {
-        p = producto
-        p.qty = 1
-        carrito.push(p)
-        const el = createCartElement(p)
-        carritoContent.append(el)
-        addLocalStorage('carrito',carrito)
-        totalProducts = getTotalElements(carrito)
-        noti.innerText=totalProducts
-    }
-    totalPrice=getTotalPrice(carrito)
-    totalPriceID.innerText = totalPrice
-}
-
 //Damos formato de precio
 function formatQty(qty){
     return format = new Intl.NumberFormat('es-PE', {
