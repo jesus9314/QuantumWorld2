@@ -214,8 +214,20 @@ body {
         text-transform: capitalize; }
       .cart__item .itemContent p {
         color: #b6b6b6; }
+        .cart__item .itemContent p .btn-qty {
+          width: 20px;
+          height: 20px;
+          border: none;
+          background-color: #cfcfcf;
+          border-radius: 5px;
+          transition: .3s;
+          cursor: pointer; }
+          .cart__item .itemContent p .btn-qty:hover {
+            background-color: #727272; }
         .cart__item .itemContent p .qty {
-          color: red; }
+          color: red;
+          margin: 0 0.5rem;
+          text-align: center; }
   .cart__footer {
     bottom: 0;
     padding: 1rem 0;
