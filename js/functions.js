@@ -158,14 +158,14 @@ const setCarrito = id => {
         updateNotification()
         updateTotal()
         addLocalStorage(carrito)
-        Swal.fire({
-            title: `Se ha agregado ${producto.name} con éxito a tu carrito`,
-            icon: 'success',
-            toast: true,
-            position: 'bottom-start',
-            timer: 3000,
-            showConfirmButton: false
-        })
+        Toastify({
+            text: `Se ha agregado ${producto.name} correctamente a tu carrito`,
+            duration: 3000,
+            close:true,
+            gravity: 'bottom',
+            position: 'left',
+            backgroundColor: '#54EC2A'
+        }).showToast()
     }
 }
 //crea una tarjeta y retorna el elemento creado
