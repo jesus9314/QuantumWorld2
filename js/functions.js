@@ -67,10 +67,18 @@ const getDataFromStorage = name => {
 //limpiamos el carrito
 const cleanCart = e => {
     e.preventDefault()
-    if (confirm("Seguro que desea limpiar su carrito?")) {
-        localStorage.clear()
-        location.reload();
-    }
+    Swal.fire({
+        title: '¿Estás seguro que deseas limpiar tu carrito por completo?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then( result =>{
+        if(result.isConfirmed){
+            localStorage.clear()
+            location.reload();
+        }
+    })
 }
 /*
 <------------------------------------------------------------------>
@@ -150,6 +158,14 @@ const setCarrito = id => {
         updateNotification()
         updateTotal()
         addLocalStorage(carrito)
+        Swal.fire({
+            title: `Se ha agregado ${producto.name} con éxito a tu carrito`,
+            icon: 'success',
+            toast: true,
+            position: 'bottom-start',
+            timer: 3000,
+            showConfirmButton: false
+        })
     }
 }
 //crea una tarjeta y retorna el elemento creado
@@ -245,9 +261,7 @@ const modifyQty = e => {
         const el = e.target.parentElement.parentElement.parentElement.parentElement
         const producto = getProductOriginal(id, carrito)
         if (producto.qty === 1) {
-            if (confirm("Estás seguro que deseas eliminar este producto?")) {
-                deleteItem(id, el)
-            }
+            alertDelete(producto, id, el)
         }
         if (producto.qty > 1) {
             producto.qty--
@@ -262,9 +276,8 @@ const modifyQty = e => {
         //cuando se da click al botón de eliminar
         id = Number(e.target.dataset.id)
         const el = e.target.parentElement.parentElement
-        if (confirm("Estás seguro que deseas eliminar este producto?")) {
-            deleteItem(id, el)
-        }
+        const producto = getProductOriginal(id, carrito)
+        alertDelete(producto, id, el)
         updateNotification()
         updateTotal()
         addLocalStorage(carrito)
@@ -277,4 +290,24 @@ const deleteItem = (id, element) => {
     const index = carrito.indexOf(item)
     carrito.splice(index, 1)
     element.remove()
+}
+const alertDelete = (producto, id, el) => {
+    Swal.fire({
+        title: `¿Estás seguro que deseas eliminar ${producto.name} de tu carrito?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+    }).then(result => {
+        if (result.isConfirmed) {
+            deleteItem(id, el)
+            updateNotification()
+            updateTotal()
+            addLocalStorage(carrito)
+            Swal.fire({
+                title: 'Producto Eliminado',
+                icon: 'success',
+            })
+        }
+    })
 }
