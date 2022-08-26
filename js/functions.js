@@ -73,8 +73,8 @@ const cleanCart = e => {
         showCancelButton: true,
         confirmButtonText: 'Sí',
         cancelButtonText: 'No'
-    }).then( result =>{
-        if(result.isConfirmed){
+    }).then(result => {
+        if (result.isConfirmed) {
             localStorage.clear()
             location.reload();
         }
@@ -100,6 +100,21 @@ const updateTotal = () => {
     const totalPriceEl = document.querySelector('#totalPrice')
     totalPriceEl.innerText = formatQty(total)
 }
+//imprimir los productos de la api
+const setProducts = data => {
+    data.forEach(product => {
+        const obj = {
+            url: product.image,
+            name: product.title,
+            price: product.price,
+            id: product.id,
+            stock: 10
+        }
+        productos.push(obj)
+        createCard(obj)
+    })
+}
+
 //function para imprimir todos los productos
 const printProducts = (container, array) => {
     array.forEach(a => {
@@ -134,6 +149,7 @@ const addCart = e => {
     if (e.target.classList.contains('product__button')) {
         const id = Number(e.target.dataset.id)
         setCarrito(id)
+        console.log(carrito)
     }
     e.stopPropagation()
 }
@@ -161,7 +177,7 @@ const setCarrito = id => {
         Toastify({
             text: `Se ha agregado ${producto.name} correctamente a tu carrito`,
             duration: 3000,
-            close:true,
+            close: true,
             gravity: 'bottom',
             position: 'left',
             backgroundColor: '#54EC2A'

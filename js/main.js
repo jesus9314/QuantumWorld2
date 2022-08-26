@@ -26,10 +26,19 @@ let totalProducts = 0
 let totalPrice = 0
 const productos = []
 
+fetch('https://fakestoreapi.com/products')
+.then(response => response.json())
+.then(data => setProducts(data))
+.catch(error => console.log(error))
+
 // Creamos lor productos
-productos.push(new Product(0, 'Core I5 12400', 1200, 'img/ci512400.jpg', 5, 'intel'))
-productos.push(new Product(1, 'RTX 2060 MSI', 2800, 'img/rtx2060msi.jpg', 3, 'MSI'))
-productos.push(new Product(2, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
+// productos.push(new Product(0, 'Core I5 12400', 1200, 'img/ci512400.jpg', 5, 'intel'))
+// productos.push(new Product(1, 'RTX 2060 MSI', 2800, 'img/rtx2060msi.jpg', 3, 'MSI'))
+// productos.push(new Product(2, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
+// productos.push(new Product(3, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
+// productos.push(new Product(4, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
+// productos.push(new Product(5, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
+// productos.push(new Product(6, 'Placa Asus Prime A320', 350, 'img/asusPrimea320.jpg', 6, 'Asus'))
 
 //al cargar la página, si el carrito tiene productos los renderizamos, caso contrario, lo inicializamos como un array vacío
 carrito ? renderCart() : (
@@ -37,7 +46,7 @@ carrito ? renderCart() : (
     updateNotification(),
     updateTotal()
 )
-
+console.log(productos)
 //imprimimos todos productos 
 printProducts(productsContainer, productos)
 
