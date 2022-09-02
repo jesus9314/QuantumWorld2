@@ -65,6 +65,7 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    width: 100%;
     padding: 0 1rem; }
     .header .navbar button {
       border: none;
@@ -93,14 +94,17 @@ body {
           position: absolute;
           top: -50%;
           right: -50%;
+          aspect-ratio: 1 / 1;
           background: red;
           font-size: 10px;
           padding: 5px;
+          width: 20px;
           border-radius: 50%; }
     .header .navbar__brand {
       display: flex;
       justify-content: space-between;
       height: 80px;
+      width: 100%;
       align-items: center; }
       .header .navbar__brand h1 {
         letter-spacing: 2px; }
@@ -122,6 +126,8 @@ body {
       transition: 0.3s; }
       .header .navbar__item:hover {
         background-color: #484982; }
+    .header .navbar__list {
+      padding-left: 0; }
 
 /* Media Query Header */
 @media (min-width: 992px) {
@@ -209,9 +215,9 @@ body {
       .cart__item .itemContent h3 {
         color: #4b4b4b;
         font-weight: 500;
-        letter-spacing: 1.5px;
         line-height: 1;
-        text-transform: capitalize; }
+        text-transform: capitalize;
+        font-size: 14px; }
       .cart__item .itemContent p {
         color: #b6b6b6; }
         .cart__item .itemContent p .btn-qty {
@@ -308,33 +314,38 @@ body {
     overflow: hidden; }
   .products .product__img {
     height: 60%;
-    width: 100%; }
+    width: 100%;
+    padding: 1rem; }
     .products .product__img img {
       width: 100%;
       height: 270px; }
   .products .product__content {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     text-align: center;
-    padding: 1rem;
+    padding: 0.5rem;
     height: 40%;
     font-size: 18px;
     background-color: #fbffda; }
     .products .product__content h2 {
       font-weight: 500;
+      line-height: 12px;
+      color: black;
+      width: 100%;
       letter-spacing: 2px;
       color: #5a5a5a;
       font-size: 12px; }
     .products .product__content p {
-      color: gray; }
+      color: gray;
+      margin-bottom: 0; }
     .products .product__content .product__button {
       border: none;
       background: #484982;
       color: white;
-      padding: 0.8rem 0;
+      padding: 0.5rem 0;
       border-radius: 20px;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: 4px;
       cursor: pointer;
       transition: .3s;

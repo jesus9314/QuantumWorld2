@@ -19,6 +19,7 @@
     .product__img{
         height: 60%;
         width: 100%;
+        padding: 1rem;
         img{
             width: 100%;
             height: 270px;
@@ -27,28 +28,32 @@
     .product__content{
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
         text-align: center;
-        padding: 1rem;
+        padding: 0.5rem;
         height: 40%;
         font-size: 18px;
         background-color: rgb(251, 255, 218);
         h2{
             font-weight: 500;
+            line-height: 12px;
+            color: black;
+            width: 100%;
             letter-spacing: 2px;
             color: rgb(90, 90, 90);
             font-size: 12px;
         }
         p{
             color: gray;
+            margin-bottom: 0;
         }
         .product__button{
             border: none;
             background: $purple;
             color: white;
-            padding: 0.8rem 0;
+            padding: 0.5rem 0;
             border-radius: 20px;
-            font-weight: 700;
+            font-weight: 500;
             letter-spacing: 4px;
             cursor: pointer;
             transition: .3s;

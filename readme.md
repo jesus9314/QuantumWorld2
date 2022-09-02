@@ -7,6 +7,19 @@ Proyecto final del curso de JavaScript en [CoderHouse](coderhouse.com), empleand
 * JavaScript
 * Sass
 
+## Temas de JS
+
+* Objetos
+* Arreglos
+* Funciones de orden Superior
+* Manejo del DOM
+* Eventos
+* Storage y Json
+* Librerías
+* Promesas
+* Fetch
+
+
 ## Fuentes ✒️
 
 * [League Spartan - Google Fonts](https://fonts.google.com/specimen/League+Spartan?query=sparta)

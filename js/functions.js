@@ -149,7 +149,6 @@ const addCart = e => {
     if (e.target.classList.contains('product__button')) {
         const id = Number(e.target.dataset.id)
         setCarrito(id)
-        console.log(carrito)
     }
     e.stopPropagation()
 }
